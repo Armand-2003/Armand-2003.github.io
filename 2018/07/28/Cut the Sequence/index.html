@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="title:有理数封装模板 tags:模板  有理数模板1234567891011121314151617181920212223242526272829303132333435363738394041struct Rational &amp;#123;	int a,b;	Rational() &amp;#123;		a=0,b=1;	&amp;#125;	int gcd(int a,int b) &amp;#123;		if(">
+<meta name="description" content="title:Cut the Sequence  tags:单调队列 Dp  Vjudge Cut the Sequence Dp+单调队列优化+尺取 题意：12给定一个长度为N的序列，你需要把序列分成很多段。每段的和不能超过M。每段的价值为这段的最大值。如何分割使得所有段的价值总和最小。 12数据范围:(0&amp;lt;N≤100000) 123Input:8 172 2 2 8 1 8 2 1 12O">
 <meta property="og:type" content="article">
 <meta property="og:title" content="The Blog">
-<meta property="og:url" content="http://yoursite.com/2018/07/28/有理数封装模板/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/07/28/Cut the Sequence/index.html">
 <meta property="og:site_name" content="The Blog">
-<meta property="og:description" content="title:有理数封装模板 tags:模板  有理数模板1234567891011121314151617181920212223242526272829303132333435363738394041struct Rational &amp;#123;	int a,b;	Rational() &amp;#123;		a=0,b=1;	&amp;#125;	int gcd(int a,int b) &amp;#123;		if(">
+<meta property="og:description" content="title:Cut the Sequence  tags:单调队列 Dp  Vjudge Cut the Sequence Dp+单调队列优化+尺取 题意：12给定一个长度为N的序列，你需要把序列分成很多段。每段的和不能超过M。每段的价值为这段的最大值。如何分割使得所有段的价值总和最小。 12数据范围:(0&amp;lt;N≤100000) 123Input:8 172 2 2 8 1 8 2 1 12O">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-27T09:45:12.643Z">
+<meta property="og:updated_time" content="2018-07-28T04:03:19.854Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="The Blog">
-<meta name="twitter:description" content="title:有理数封装模板 tags:模板  有理数模板1234567891011121314151617181920212223242526272829303132333435363738394041struct Rational &amp;#123;	int a,b;	Rational() &amp;#123;		a=0,b=1;	&amp;#125;	int gcd(int a,int b) &amp;#123;		if(">
+<meta name="twitter:description" content="title:Cut the Sequence  tags:单调队列 Dp  Vjudge Cut the Sequence Dp+单调队列优化+尺取 题意：12给定一个长度为N的序列，你需要把序列分成很多段。每段的和不能超过M。每段的价值为这段的最大值。如何分割使得所有段的价值总和最小。 12数据范围:(0&amp;lt;N≤100000) 123Input:8 172 2 2 8 1 8 2 1 12O">
 
 
 
@@ -119,7 +119,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/07/28/有理数封装模板/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/07/28/Cut the Sequence/"/>
 
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/28/有理数封装模板/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/28/Cut the Sequence/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Armand">
@@ -261,7 +261,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-28T10:30:34+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-28T12:21:21+08:00">
                 2018-07-28
               </time>
             
@@ -299,10 +299,18 @@
       
 
       
-        <p>title:有理数封装模板</p>
-<p>tags:模板</p>
-<hr>
-<h3 id="有理数模板"><a href="#有理数模板" class="headerlink" title="有理数模板"></a>有理数模板</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Rational</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> a,b;</span><br><span class="line">	Rational() &#123;</span><br><span class="line">		a=<span class="number">0</span>,b=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(a==<span class="number">0</span>)<span class="keyword">return</span> b;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">return</span> gcd(b%a,a);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">cut</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> g=gcd(a,b);</span><br><span class="line">		a/=g,b/=g;</span><br><span class="line">	&#125;</span><br><span class="line">	Rational <span class="keyword">operator</span> =(<span class="keyword">const</span> <span class="keyword">int</span> &amp;x) &#123;</span><br><span class="line">		a=x,b=<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">return</span> (*<span class="keyword">this</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	Rational <span class="keyword">operator</span> +(<span class="keyword">const</span> Rational &amp;x)<span class="keyword">const</span> &#123;</span><br><span class="line">		Rational res;</span><br><span class="line">		res.a=a*x.b+x.a*b;</span><br><span class="line">		res.b=b*x.b;</span><br><span class="line">		res.cut();</span><br><span class="line">		<span class="keyword">return</span> res;</span><br><span class="line">	&#125;</span><br><span class="line">	Rational <span class="keyword">operator</span> /(<span class="keyword">int</span> x) &#123;</span><br><span class="line">		b*=x;</span><br><span class="line">		cut();</span><br><span class="line">		<span class="keyword">return</span> (*<span class="keyword">this</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	Rational <span class="keyword">operator</span> *(<span class="keyword">int</span> x) &#123;</span><br><span class="line">		a*=x;</span><br><span class="line">		cut();</span><br><span class="line">		<span class="keyword">return</span> (*<span class="keyword">this</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">integer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> a/b;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">double</span> <span class="title">factor</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> (<span class="keyword">double</span>)a/b;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+        <p>title:Cut the Sequence </p>
+<p>tags:单调队列</p>
+<pre><code>Dp
+</code></pre><hr>
+<h2 id="Vjudge-Cut-the-Sequence"><a href="#Vjudge-Cut-the-Sequence" class="headerlink" title="Vjudge Cut the Sequence"></a>Vjudge Cut the Sequence</h2><blockquote>
+<h2 id="Dp-单调队列优化-尺取"><a href="#Dp-单调队列优化-尺取" class="headerlink" title="Dp+单调队列优化+尺取"></a>Dp+单调队列优化+尺取</h2></blockquote>
+<h3 id="题意："><a href="#题意：" class="headerlink" title="题意："></a>题意：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">给定一个长度为N的序列，你需要把序列分成很多段。每段的和不能超过M。</span><br><span class="line">每段的价值为这段的最大值。如何分割使得所有段的价值总和最小。</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">数据范围:</span><br><span class="line">(<span class="number">0</span>&lt;N≤<span class="number">100000</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line"><span class="number">8</span> <span class="number">17</span></span><br><span class="line"><span class="number">2</span> <span class="number">2</span> <span class="number">2</span> <span class="number">8</span> <span class="number">1</span> <span class="number">8</span> <span class="number">2</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Output:</span><br><span class="line"><span class="number">12</span></span><br></pre></td></tr></table></figure>
+<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">翻转题意,可知即为求最小取出的值.观察题目特点,取最优解,可继承更新,故考虑Dp.</span><br><span class="line">而Dp又要控制满足从范围的区域继承,所以采取单调队列储存,储存合法范围内最小的Dp值.</span><br><span class="line">而合法范围的确定则要由尺取承担,稍加维护范围便限定了.</span><br></pre></td></tr></table></figure>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码:"></a>代码:</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">   <span class="built_in">memset</span>(dp,<span class="number">127</span>/<span class="number">3</span>,<span class="keyword">sizeof</span>(dp));</span><br><span class="line">dp[<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;=n; i++) &#123;</span><br><span class="line">	<span class="keyword">while</span>(l&lt;=r&amp;&amp;a[i]&gt;a[Q[r]])r--;<span class="comment">//维护单调队列</span></span><br><span class="line">	Q[++r]=i;</span><br><span class="line">	sum+=a[i];</span><br><span class="line">	<span class="keyword">while</span>(sum&gt;m)sum-=a[L++];<span class="comment">//控制持取范围</span></span><br><span class="line">	<span class="keyword">while</span>(l&lt;=r&amp;&amp;Q[l]&lt;L)l++;</span><br><span class="line">	dp[i]=dp[L<span class="number">-1</span>]+a[Q[l]];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j=l+<span class="number">1</span>; j&lt;=r; j++)dp[i]=min(dp[i],dp[Q[j<span class="number">-1</span>]]+a[Q[j]]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -326,18 +334,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/28/高精模板/" rel="next" title="高精封装模板">
-                <i class="fa fa-chevron-left"></i> 高精封装模板
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/07/28/合并果子/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/07/28/LCIS/" rel="prev" title="LCIS">
+                LCIS <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -415,7 +419,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -461,7 +465,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#有理数模板"><span class="nav-number">1.</span> <span class="nav-text">有理数模板</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Vjudge-Cut-the-Sequence"><span class="nav-number">1.</span> <span class="nav-text">Vjudge Cut the Sequence</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dp-单调队列优化-尺取"><span class="nav-number">2.</span> <span class="nav-text">Dp+单调队列优化+尺取</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题意："><span class="nav-number">2.1.</span> <span class="nav-text">题意：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路："><span class="nav-number">2.2.</span> <span class="nav-text">思路：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">2.3.</span> <span class="nav-text">代码:</span></a></li></ol></li></ol></div>
             
 
           </div>
