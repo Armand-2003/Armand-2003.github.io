@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="线段树," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Vjudge LCIS 线段树+RMQ 题意：12345678Given n integers. You have two operations: U A B: replace the Ath number by B. (index counting from 0) Q A B: output the length of the longest consecutive increasing sub">
+<meta name="keywords" content="线段树">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LCIS">
+<meta property="og:url" content="http://yoursite.com/2018/07/28/LCIS/index.html">
+<meta property="og:site_name" content="The Blog">
+<meta property="og:description" content="Vjudge LCIS 线段树+RMQ 题意：12345678Given n integers. You have two operations: U A B: replace the Ath number by B. (index counting from 0) Q A B: output the length of the longest consecutive increasing sub">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-27T09:45:13.142Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LCIS">
+<meta name="twitter:description" content="Vjudge LCIS 线段树+RMQ 题意：12345678Given n integers. You have two operations: U A B: replace the Ath number by B. (index counting from 0) Q A B: output the length of the longest consecutive increasing sub">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/07/28/LCIS/"/>
+
+
+
+
+
+  <title>LCIS | The Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">The Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">The Water</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/28/LCIS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Armand">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">LCIS</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-28T10:30:34+08:00">
+                2018-07-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Vjudge-LCIS"><a href="#Vjudge-LCIS" class="headerlink" title="Vjudge LCIS"></a>Vjudge LCIS</h2><blockquote>
+<h2 id="线段树-RMQ"><a href="#线段树-RMQ" class="headerlink" title="线段树+RMQ"></a>线段树+RMQ</h2></blockquote>
+<h3 id="题意："><a href="#题意：" class="headerlink" title="题意："></a>题意：</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Given n integers. </span><br><span class="line">You have two operations: </span><br><span class="line">U A B: replace the Ath number by B. (index counting from <span class="number">0</span>) </span><br><span class="line">Q A B: output the length of the longest consecutive increasing subsequence (LCIS) in [a, b]. </span><br><span class="line"></span><br><span class="line">(translate)</span><br><span class="line">    U表示把第A个数改成B，下标从<span class="number">0</span>开始。</span><br><span class="line">    Q表示求区间[A,B]范围内的最长连续上升子区间。</span><br></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">数据范围：</span><br><span class="line">(n,m&lt;=100000)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">1</span><br><span class="line">10 10</span><br><span class="line">7 7 3 3 5 9 9 8 1 8 </span><br><span class="line">Q 6 6</span><br><span class="line">U 3 4</span><br><span class="line">Q 0 1</span><br><span class="line">Q 0 5</span><br><span class="line">Q 4 7</span><br><span class="line">Q 3 5</span><br><span class="line">Q 0 2</span><br><span class="line">Q 4 6</span><br><span class="line">U 6 10</span><br><span class="line">Q 0 9</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Output：</span><br><span class="line">1</span><br><span class="line">1</span><br><span class="line">4</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">1</span><br><span class="line">2</span><br><span class="line">5</span><br></pre></td></tr></table></figure>
+<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">由于是线段树专题中的题目,也就没有去考虑是否应该用线段树解决了,但是写的时候还是很楞,不知道怎么写.可见此题的思考也是一大难点.</span><br><span class="line">Ps:在思考的时候一直没有看清楚题目,一直以为是求一个最长上升子序列,导致思维停留在线段树优化dp上,浪费了不少时间.</span><br></pre></td></tr></table></figure>
+<h6 id="连续子序列！！！"><a href="#连续子序列！！！" class="headerlink" title="连续子序列！！！"></a>连续子序列！！！</h6><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">在看清楚题目之后,仍然不是很清楚怎么写,可见思维并不是非常深刻啊.</span><br><span class="line"></span><br><span class="line">而后注意到了,(tree[p].Mxlen)无非是三种情况</span><br></pre></td></tr></table></figure>
+<h6 id="tree-Lson-Mxlen"><a href="#tree-Lson-Mxlen" class="headerlink" title="tree[Lson].Mxlen"></a>tree[Lson].Mxlen</h6><h6 id="tree-Rson-Mxlen"><a href="#tree-Rson-Mxlen" class="headerlink" title="tree[Rson].Mxlen"></a>tree[Rson].Mxlen</h6><h6 id="Rson与Lson的中间合并"><a href="#Rson与Lson的中间合并" class="headerlink" title="Rson与Lson的中间合并"></a>Rson与Lson的中间合并</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">于是开始考虑代码的核心,即Up操作.</span><br><span class="line"></span><br><span class="line">    tree[p].Len=max(tree[Lson].Len,tree[Rson].Len);</span><br><span class="line">	tree[p].Lmx=tree[Lson].Lmx,tree[p].Rmx=tree[Rson].Rmx;</span><br><span class="line">	tree[p].Lenl=tree[Lson].Lenl,tree[p].Lenr=tree[Rson].Lenr;</span><br><span class="line">	if(tree[Lson].Rmx&lt;tree[Rson].Lmx) &#123;</span><br><span class="line">		tree[p].Len=max(tree[p].Len,tree[Lson].Lenr+tree[Rson].Lenl);</span><br><span class="line">		if(tree[Lson].Lenl==tree[Lson].R-tree[Lson].L+1)tree[p].Lenl=tree[Lson].Lenl+tree[Rson].Lenl;</span><br><span class="line">		if(tree[Rson].Lenr==tree[Rson].R-tree[Rson].L+1)tree[p].Lenr=tree[Lson].Lenr+tree[Rson].Lenr;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">即我们先考虑一个区间最长连续上升子序列的构成情况,如上三种.</span><br><span class="line">所以最长长度先从两个子区间内转移过来,</span><br><span class="line">然后比较左儿子右端与右儿子左端能否合并,若可以,继续更新区间最大长度即可.</span><br></pre></td></tr></table></figure>
+<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">struct node &#123;</span><br><span class="line">	int L,R,Len;</span><br><span class="line">	int Rmx,Lmx,Lenr,Lenl;</span><br><span class="line">&#125; tree[M&lt;&lt;2];</span><br><span class="line">int a[M];</span><br><span class="line">int n,m,Case,A,b;</span><br><span class="line">char s[5];</span><br><span class="line">void Up(int p) &#123;</span><br><span class="line">	tree[p].Lenl=tree[Lson].Lenl,tree[p].Lenr=tree[Rson].Lenr;</span><br><span class="line">	tree[p].Lmx=tree[Lson].Lmx,tree[p].Rmx=tree[Rson].Rmx;</span><br><span class="line">	tree[p].Len=max(tree[Lson].Len,tree[Rson].Len);</span><br><span class="line">	if(tree[Lson].Rmx&lt;tree[Rson].Lmx) &#123;</span><br><span class="line">		if(tree[Lson].Lenl==tree[Lson].R-tree[Lson].L+1)tree[p].Lenl=tree[Lson].Lenl+tree[Rson].Lenl;</span><br><span class="line">		if(tree[Rson].Lenr==tree[Rson].R-tree[Rson].L+1)tree[p].Lenr=tree[Lson].Lenr+tree[Rson].Lenr;</span><br><span class="line">		tree[p].Len=max(tree[p].Len,tree[Lson].Lenr+tree[Rson].Lenl);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">void bulid(int l,int r,int p) &#123;</span><br><span class="line">	tree[p].Len=1,tree[p].Len=0;</span><br><span class="line">	tree[p].L=l,tree[p].R=r;</span><br><span class="line">	tree[p].Lmx=0,tree[p].Rmx=0;</span><br><span class="line">	tree[p].Lenr=1,tree[p].Lenl=1;</span><br><span class="line">	if(l==r)return ;</span><br><span class="line">	int mid=(Rp+Lp)&gt;&gt;1;</span><br><span class="line">	bulid(Lp,mid,Lson),bulid(mid+1,Rp,Rson);</span><br><span class="line">&#125;</span><br><span class="line">void update(int l,int x,int p) &#123;</span><br><span class="line">	if(tree[p].L==l&amp;&amp;tree[p].R==l) &#123;tree[p].Lmx=tree[p].Rmx=x;return ;&#125;</span><br><span class="line">	int mid=(Rp+Lp)&gt;&gt;1;</span><br><span class="line">	if(l&gt;mid)update(l,x,Rson);</span><br><span class="line">	else if(l&lt;=mid)update(l,x,Lson);</span><br><span class="line">	Up(p);</span><br><span class="line">&#125;</span><br><span class="line">int query(int l,int r,int p) &#123;</span><br><span class="line">	if (Lp==l&amp;&amp;Rp==r)return tree[p].Len;</span><br><span class="line">	int mid=(Lp+Rp)&gt;&gt;1;</span><br><span class="line">	if (l&gt;mid)return query(l,r,Rson);</span><br><span class="line">	else if (r&lt;=mid)return query(l,r,Lson);</span><br><span class="line">	else &#123;</span><br><span class="line">		int tmpf=min(tree[Lson].Lenr,mid-l+1),tmps=min(tree[Rson].Lenl,r-mid);</span><br><span class="line">		int Mx=max(tmpf,tmps);</span><br><span class="line">		Mx=max(Mx,max(query(l,mid,Lson),query(mid+1,r,Rson)));</span><br><span class="line">		if(tree[Lson].Rmx&lt;tree[Rson].Lmx)Mx=max(Mx,tmpf+tmps);</span><br><span class="line">		return Mx;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/线段树/" rel="tag"># 线段树</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/28/Cut the Sequence/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/28/部落信号/" rel="prev" title="部落信号">
+                部落信号 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Armand</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Vjudge-LCIS"><span class="nav-number">1.</span> <span class="nav-text">Vjudge LCIS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线段树-RMQ"><span class="nav-number">2.</span> <span class="nav-text">线段树+RMQ</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题意："><span class="nav-number">2.1.</span> <span class="nav-text">题意：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路："><span class="nav-number">2.2.</span> <span class="nav-text">思路：</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#连续子序列！！！"><span class="nav-number">2.2.0.0.1.</span> <span class="nav-text">连续子序列！！！</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#tree-Lson-Mxlen"><span class="nav-number">2.2.0.0.2.</span> <span class="nav-text">tree[Lson].Mxlen</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#tree-Rson-Mxlen"><span class="nav-number">2.2.0.0.3.</span> <span class="nav-text">tree[Rson].Mxlen</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Rson与Lson的中间合并"><span class="nav-number">2.2.0.0.4.</span> <span class="nav-text">Rson与Lson的中间合并</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码："><span class="nav-number">2.3.</span> <span class="nav-text">代码：</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Armand</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
