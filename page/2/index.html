@@ -229,136 +229,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/28/Buy Tickets/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Armand">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="The Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/28/Buy Tickets/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-28T10:30:34+08:00">
-                2018-07-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>title:Buy Tickets </p>
-<p>tags:树状数组</p>
-<hr>
-<h2 id="Vjudge-Buy-Tickets"><a href="#Vjudge-Buy-Tickets" class="headerlink" title="Vjudge Buy Tickets"></a>Vjudge Buy Tickets</h2><blockquote>
-<h2 id="树状数组-找第k空位"><a href="#树状数组-找第k空位" class="headerlink" title="树状数组(找第k空位)"></a><font color="#DC143C" size="5">树状数组(找第k空位)</font></h2></blockquote>
-<h3 id="题意："><a href="#题意：" class="headerlink" title="题意："></a>题意：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">人们一个一个的来排队并插队,按人到来的顺序给出每个人插队的位置pos[i]与自身的号码val[i],pos[i]表示插在第几个人后面(即插在pos[i]+1的位置),输出最终队伍的情况.</span><br></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">数据范围：</span><br><span class="line">(<span class="number">1</span>≤N≤<span class="number">200000</span>)</span><br></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">0</span> <span class="number">77</span></span><br><span class="line"><span class="number">1</span> <span class="number">51</span></span><br><span class="line"><span class="number">1</span> <span class="number">33</span></span><br><span class="line"><span class="number">2</span> <span class="number">69</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">0</span> <span class="number">20523</span></span><br><span class="line"><span class="number">1</span> <span class="number">19243</span></span><br><span class="line"><span class="number">1</span> <span class="number">3890</span></span><br><span class="line"><span class="number">0</span> <span class="number">31492</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Output:</span><br><span class="line"><span class="number">77</span> <span class="number">33</span> <span class="number">69</span> <span class="number">51</span></span><br><span class="line"><span class="number">31492</span> <span class="number">20523</span> <span class="number">3890</span> <span class="number">19243</span></span><br></pre></td></tr></table></figure>
-<p><img src="http://poj.org/images/2828.gif" alt="image"></p>
-<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">模拟最后一个人的插入,可知,最后一个人插到哪儿就在哪儿,所以最后一个人的位置必在他插入的地方.</span><br><span class="line">当我们把最后一个人插进去后,倒数第二个人就变成了最后一个人,重复最后一个人的步骤,找到第k个空位,倒数第二个人就插入到了这里.</span><br><span class="line">不断重复上述步骤,最终每个人都会进去,题目完成.</span><br><span class="line">而关于求第k空位的实现,采用树状数组,也是老套路了,复杂度约为O(logn),处理这题绰绰有余.</span><br></pre></td></tr></table></figure>
-<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i=n; i&gt;=<span class="number">1</span>; i--) &#123;</span><br><span class="line">	<span class="keyword">int</span> res;</span><br><span class="line">	<span class="keyword">int</span> l=<span class="number">1</span>,r=n;</span><br><span class="line">	<span class="keyword">while</span>(l&lt;=r) &#123;</span><br><span class="line">		<span class="keyword">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span>(mid-sum(mid)<span class="number">-1</span>&gt;=a[i])res=mid,r=mid<span class="number">-1</span>;</span><br><span class="line">		<span class="keyword">else</span> l=mid+<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	Add(res,<span class="number">1</span>);</span><br><span class="line">	ans[res]=b[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++)<span class="built_in">printf</span>(<span class="string">"%d "</span>,ans[i]);</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/28/2^k进制数/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -521,7 +391,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
